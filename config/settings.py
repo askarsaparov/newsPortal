@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-_o@4ok)&l3=#7p2l6xtpaoldf=tg!3uzzz5h#*r7&bs*vs0v$5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
-
+'*'
     'news.apps.NewsConfig',
 ]
 
