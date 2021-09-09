@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+	#all_category {
+	color: white;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<main class="container mt-3 mb-5">
+	<h3 class="border-bottom pb-1 my-4">All Categories</h3>
+	<div class="row">
+		<!-- Category Box -->
+		{% for category in object_list %}
+		<div class="col-md-4">
+			<div class="card mb-3 shadow">
+            <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.image.url }}">
+			  <div class="card-body">
+			    <h5 class="card-title">{{ category.title}}</h5>
+			    <hr/>
+			    <p class="card-text"><a href="{% url 'category_news' category.id %}" class="btn btn-sm btn-primary">All News</a></p>
+			  </div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</main>
+{% endblock %}

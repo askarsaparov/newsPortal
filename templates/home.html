@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+	#home {
+	color: white;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<main class="container mt-3 mb-5">
+	<!-- featured news -->
+	<div class="row my-3">
+		<!-- Left -->
+		<div class="col-md-9">
+			<div class="card mb-3">
+			  <img src="{{ last_news.image.url }}" class="card-img-top" alt="{{ last_news.image.url }}">
+			  <div class="card-body">
+			    <h5 class="card-title">{{ last_news.title }}</h5>
+			    <hr/>
+			    <p class="card-text">{{ last_news.body_text|slice:":100" }}</p>
+				  <p>
+					  {{ last_news.created_date }}
+					  <a href="{% url 'detail_news' last_news.id %}" class="btn btn-sm btn-primary float-right">Read Full</a>
+				  </p>
+			  </div>
+			</div>
+
+			<h4>Latest News</h4>
+			<hr>
+			{% for news in latest_news %}
+			<a href="{% url 'detail_news' news.id %}" class="card-title text-dark ">{{ news.title }}</a>
+			<span class="float-right">{{ news.created_date }}</span>
+			<hr/>
+			{% endfor %}
+
+		</div>
+
+
+		<!-- Right -->
+		<div class="col-md-3">
+			<h3>From this category</h3>
+			{% for obj in from_this_category %}
+			<div class="card mb-4 shadow">
+	  			<div class="row no-gutters">
+	    			<div class="float-left col-md-12">
+						<img src="{{ obj.image.url }}" class="card-img-top" alt="{{ obj.image.url }}">
+	    			</div>
+	    			<div class="float-right col-md-12">
+	      				<div class="card-body">
+	        				<h6 class="card-title">{{ obj.title }}</h6>
+			  				<p style="font-size: 12px;">
+					  			{{ last_news.created_date }}
+					  			<a href="{% url 'detail_news' last_news.id %}" class="btn btn-sm btn-primary float-right">Read Full</a>
+							</p>
+	      				</div>
+	    			</div>
+	  			</div>
+    		</div>
+			{% endfor %}
+		</div>
+
+
+
+
+	</div>
+</main>
+{% endblock %}

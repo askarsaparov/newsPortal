@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+	#all_news {
+	color: white;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<main class="container mt-3 mb-5">
+	<h3 class="border-bottom pb-1 my-4">All News</h3>
+    <!-- News Box -->
+    {% for news in object_list %}
+	<div class="card mb-4 shadow">
+	  <div class="row no-gutters">
+	    <div class="col-md-3">
+            <img src="{{ news.image.url }}" class="card-img-top" alt="{{ news.image.url }}">
+	    </div>
+	    <div class="col-md-8">
+	      <div class="card-body">
+	        <h5 class="card-title">{{ news.title }}</h5>
+	        <p class="card-text">{{ news.body_text|slice:100 }}</p>
+	        <p class="card-text">
+				{{ news.created_date }}
+				<a href="{% url 'detail_news' news.id %}" class="float-right btn btn-sm btn-primary mb-1">Read Full</a>
+			</p>
+	      </div>
+	    </div>
+	  </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}

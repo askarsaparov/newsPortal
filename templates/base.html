@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}Home Page{% endblock %}</title>
+	<!-- Bootstrap 4 CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bs4/bootstrap.min.css' %}" />
+	{% block style %}{% endblock %}
+</head>
+<body>
+	<!-- Top News -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+		<div class="container">
+		  <a class="navbar-brand" href="{% url 'home' %}">News Portal</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				{% if not request.user.is_staff %}
+					<li class="nav-item">
+			        <a class="nav-link" id="home" href="{% url 'home' %}">Home</a>
+			      </li>
+			      <li class="nav-item">
+		        	<a class="nav-link" id="all_news" href="{% url 'all_news' %}">All News</a>
+		    	  </li>
+			      <li class="nav-item">
+			        <a class="nav-link" id="all_category" href="{% url 'all_category' %}">All Categories</a>
+			      </li>
+				{% if user.is_authenticated %}
+				<li class="nav-item">
+			        <a class="nav-link" id="profile" href="{% url 'profile' %}">Profile</a>
+				</li>
+				{% endif %}
+				{% endif %}
+		    </ul>
+		  </div>
+			{% if user.is_authenticated %}
+			<span class="text-white mr-3">
+				{{user.username}}
+			</span>
+    		<span><a style="font-size: 16px; color: #fff; margin-right: 10px; text-decoration: none;" href="{% url 'logout' %}">Logout</a></span>
+			{% else %}
+			<span><a href="{% url 'login' %}" style="font-size: 16px; color: #fff; margin-right: 10px; text-decoration: none;">Login</a></span>
+			{% endif %}
+	  	</div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+<hr/>
+
+	<!-- Main Jquery -->
+	<script type="text/javascript" src="{% static 'vendor/jquery.min.js' %}"></script>
+	<!-- Bootstrap Js -->
+	<script type="text/javascript" src="{% static '/vendor/bs4/bootstrap.min.js' %}"></script>
+</body>
+</html>

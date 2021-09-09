@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+#profile {
+    color: white;
+}
+</style>
+{% endblock %}
+{% block content%}
+<div class="container p-4">
+    <h3 class="text-center">Profile Page</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label class="col-md-3">Username<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                <input type="text" required value="{{user.username}}" name="username" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3">Name<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                <input type="text" required value="{{customer.name}}" name="name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3">Email<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                <input type="email" required value="{{customer.email}}" name="email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3">Account date created<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                <input type="email" required value="{{customer.date_created}}" disabled name="date_created" class="form-control">
+            </div>
+        </div>
+        <button class="btn btn-warning">Save</button>
+    </form>
+</div>
+{% endblock %}

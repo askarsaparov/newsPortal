@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+<div class="container p-4">
+    {% if model %}
+<h3 class="text-center">Update Category</h3>
+    {% else %}
+<h3 class="text-center">Create Category</h3>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if model %}
+        {{ form|crispy }}
+        <button class="btn btn-warning">Save</button>
+        {% else %}
+        <div class="form-group row">
+            <label class="col-md-3">Title<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                <input type="text" required value="{{model.title}}" name="title" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3">Image<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                {% if model %}
+            <img src="{{ model.image.url }}" alt="{{ model.image.url }}" class="prod-size" width="100px">
+            {% endif %}
+                <input type="file" required name="image" value="{{img_name}}" class="form-control">
+            </div>
+        </div>
+            {% if model %}
+        <button class="btn btn-warning">Save</button>
+            {% else %}
+        <button class="btn btn-success">Add</button>
+            {% endif %}
+        {% endif %}
+    </form>
+
+
+</div>
+
+{% endblock %}

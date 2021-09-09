@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container p-4">
+<h3 class="text-center">Welcome to Admin Page for <span class="text-primary">Category List</span></h3>
+  <a href="{% url 'admin_create_category' %}" class="btn btn-success">Add Category</a>
+<p></p>
+<p></p>
+  <table class="table-danger table-striped table table-bordered border-danger">
+  <thead class="table-dark">
+    <tr>
+      <th class="col-1">#</th>
+      <th class="col-9">Title</th>
+      <th class="col-2">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for category in category_list %}
+    <tr>
+      <th scope="row">{{ category.id }}</th>
+      <td>{{category.title}}</td>
+      <td class="text-left">
+        <a href="{% url 'admin_update_category' category.id %}" class="btn-sm btn-primary mr-2">
+          <span>Update</span>
+        </a>
+        <a href="{% url 'admin_page_category_delete' category.id %}" class="btn-sm btn-danger">
+          <span>Delete</span>
+        </a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

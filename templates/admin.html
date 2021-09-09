@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container p-2">
+<h3 class="text-center">Welcome to <span class="text-primary">Admin Page</span></h3>
+<ul class="list-group">
+  <li class="list-group-item"><a class="text-dark" href="{% url 'admin_page_category_list' %}">Categories</a></li>
+  <li class="list-group-item"><a class="text-dark" href="{% url 'comment_news_list' %}">Comments</a></li>
+  <li class="list-group-item"><a class="text-dark" href="{% url 'customers_list' %}">Customers</a></li>
+  <li class="list-group-item"><a class="text-dark" href="{% url 'admin_news_list' %}">News</a></li>
+</ul>
+</div>
+
+{% endblock %}

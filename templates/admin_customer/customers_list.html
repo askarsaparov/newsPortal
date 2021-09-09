@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container p-4">
+<h3 class="text-center">Welcome to Admin Page for <span class="text-primary">Customers List</span></h3>
+<p></p>
+<p></p>
+  <table class="table-danger table-striped table table-bordered border-danger">
+  <thead class="table-dark">
+    <tr>
+      <th class="col-1">#</th>
+      <th class="col-2">Username</th>
+      <th class="col-2">Name</th>
+      <th class="col-3">Date created account</th>
+      <th class="col-2">Email</th>
+      <th class="col-2">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for customer in customers %}
+    <tr>
+      <th>{{ customer.id }}</th>
+      <td>{{ customer.user }}</td>
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.date_created }}</td>
+      <td>{{ customer.email }}</td>
+      <td class="text-left">
+        <a href="{% url 'customer_delete' customer.id %}" class="btn-sm btn-danger">
+          <span>Delete</span>
+        </a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

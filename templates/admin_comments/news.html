@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container p-4">
+<h3 class="text-center">Welcome to Admin Page for <span class="text-primary">Comments List</span></h3>
+<p></p>
+<p></p>
+  <table class="table-danger table-striped table table-bordered border-danger">
+  <thead class="table-dark">
+    <tr>
+      <th class="col-1">#</th>
+      <th class="col-9">News</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for news in newses %}
+    <tr>
+      <th scope="row">{{ news.id }}</th>
+      <td><a class="text-dark" href="{% url 'comments_list' news.id %}">{{ news.title }}</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

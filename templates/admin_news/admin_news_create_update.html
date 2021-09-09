@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+<div class="container p-4">
+    {% if model %}
+<h3 class="text-center">Update News</h3>
+    {% else %}
+<h3 class="text-center">Create News</h3>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if model %}
+
+        {{ form|crispy }}
+        <button class="btn btn-warning">Save</button>
+
+        {% else %}
+        <div class="form-group row">
+            <label class="col-md-3">Category<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                <select class="form-control" name="category">
+                    {% for category in categories %}
+                    {% if category.title == model.category.title %}
+                    <option selected>{{category}}</option>
+                    {% else %}
+                    <option>{{category}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3">Title<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                <input type="text" required value="{{model.title}}" name="title" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3">Image<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                {% if model %}
+            <img src="{{ model.image.url }}" alt="{{ model.image.url }}" class="prod-size" width="100px">
+            {% endif %}
+                <input type="file" required name="image" value="{{img_name}}" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3">Body Text<span class="text-danger">*</span></label>
+            <div class="col-md-9">
+                <textarea class="form-control h-100" rows="8" name="body_text">{{ model.body_text }}</textarea>
+            </div>
+        </div>
+            {% if model %}
+        <button class="btn btn-warning">Save</button>
+            {% else %}
+        <button class="btn btn-success">Add</button>
+            {% endif %}
+        {% endif %}
+    </form>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container p-4">
+<h3 class="text-center">Welcome to Admin Page Comments List for <span class="text-primary">{{news.title}}</span></h3>
+<p></p>
+<p></p>
+  <table class="table-danger table-striped table table-bordered border-danger">
+  <thead class="table-dark">
+    <tr>
+      <th class="col-1">#</th>
+      <th class="col-5">Comment</th>
+      <th class="col-2">User</th>
+      <th class="col-2">News</th>
+      <th class="col-2">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for comment in comments %}
+    <tr>
+      <th scope="row">{{ comment.id }}</th>
+      <td>{{ comment.comment }} </td>
+      <td>{{ comment.name }} </td>
+      <td>{{ comment.news }} </td>
+      <td class="text-left">
+        <a href="{% url 'comment_delete' comment.id %}" class="btn-sm btn-danger">
+          <span>Delete</span>
+        </a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}
